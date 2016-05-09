@@ -1,0 +1,8 @@
+pl\pd\spring\mvc\controller\SimpleWelcomeController.class
+pl\pd\spring\mvc\controller\BookController.class
+pl\pd\spring\repository\SessionStorage.class
+pl\pd\spring\repository\BookStorageImpl.class
+pl\pd\spring\mvc\from\BookForm.class
+pl\pd\spring\repository\Storage.class
+pl\pd\spring\mvc\filter\DisableBrowserCachingInterceptor.class
+pl\pd\spring\repository\BookStorage.class
