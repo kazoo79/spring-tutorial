@@ -1,8 +1,10 @@
 package pl.pd.spring.mvc.controller;
 
+import org.hibernate.validator.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,8 +34,13 @@ public class BookController {
 		return getViewPath("book-form");
 	}
 
+	@Valid
 	@RequestMapping(value = "/saveUpdate", method = RequestMethod.POST)
-	public String saveOrUpdate(@ModelAttribute("bookForm") BookForm book) {
+	public String saveOrUpdate(@ModelAttribute("bookForm") BookForm book, Errors errors) {
+
+		if (errors.hasErrors()) {
+			return getViewPath("new");
+		}
 
 		bookStorage.saveUpdate(book);
 

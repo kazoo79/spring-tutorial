@@ -30,6 +30,10 @@
 <div class="jumbotron"></div>
 
 <form:form method="post" modelAttribute="book-form" action="saveUpdate" cssClass="container">
+
+    <%-- Wyswietlanie bledow w naglowku formularza --%>
+    <form:errors path="*" element="div" cssClass="errors"/>
+
     <div class="container">
         <div class="row">
             <div class="col-md-4">
@@ -37,6 +41,8 @@
             </div>
             <div class="col-md-4">
                 <form:input path="title"/>
+                <%-- Wyswietlanie bledow przy polu --%>
+                <%--<form:errors path="title" cssClass="error"  />--%>
             </div>
         </div>
 

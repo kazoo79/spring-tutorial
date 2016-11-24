@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.2.xsd">
 
-    <context:component-scan base-package="pl.pd.spring.mvc, pl.pd.spring.repository "/>
+    <context:component-scan base-package="pl.pd.spring.mvc, pl.pd.spring.repository, pl.pd.spring.mvc, pl.pd.spring.rest"/>
 
     <bean
             class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -32,5 +32,25 @@
     <mvc:interceptors>
         <bean class="pl.pd.spring.mvc.filter.DisableBrowserCachingInterceptor" />
     </mvc:interceptors>
+
+    <bean id="messageSource"
+          class="org.springframework.context.support.ResourceBundleMessageSource">
+        <property name="basename">
+            <value>i18n\messages</value>
+        </property>
+    </bean>
+
+    <!-- Configure to plugin JSON as request and response in method handler -->
+    <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
+        <property name="messageConverters">
+            <list>
+                <ref bean="jsonMessageConverter"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- Configure bean to convert JSON to POJO and vice versa -->
+    <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+    </bean>
 
 </beans>
